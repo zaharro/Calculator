@@ -1,19 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_columnSpan="4"
-    android:gravity="center"
+    android:gravity="bottom"
     android:orientation="horizontal"
-    tools:context=".MainActivity"
-    >
-
+    tools:context=".MainActivity">
 
     <!--    На экране помимо цифр должны быть все основные действия(набор-минимум: “Плюс”, “Умножить”,
         “Разделить”, “Вычесть”, “Равно” и “Очистить”).-->
+
+
+    <!-- поле ввода чисел -->
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+    <TextView
+        android:id="@+id/numberField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_span="4"
+        android:layout_margin="25dp"
+        android:text="@string/number_default"
+        android:textSize="@dimen/number_text" />
+
+    </TableRow>
+
+    <!-- поле результата -->
+ <!--   <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/resultField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="4"
+            android:layout_margin="25dp"
+            android:background="#bdbdbd"
+
+            android:text="Result = "
+            android:textSize="@dimen/number_text" />
+
+
+    </TableRow>-->
+
 
     <TableRow
         android:layout_width="match_parent"
@@ -21,7 +58,7 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/button_c"
+            android:id="@+id/button_clearAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_c"
@@ -35,7 +72,7 @@
             android:textSize="@dimen/button_text" />
 
         <Button
-            android:id="@+id/button_clear"
+            android:id="@+id/button_clearLast"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_clear"

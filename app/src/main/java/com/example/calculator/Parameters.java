@@ -5,24 +5,28 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 public class Parameters implements Parcelable {
-
-    public String lastOperation;
     public String insertedNumbers;
+    public String lastOperation;
+    public Double interim;
+
 
     public Parameters(){
+        insertedNumbers = null;
         lastOperation = null;
-        insertedNumbers= null;
+        interim = null;
     }
 
     protected Parameters(Parcel in) {
-        lastOperation = in.readString();
         insertedNumbers = in.readString();
+        lastOperation = in.readString();
+        interim = in.readDouble();
     }
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeString(lastOperation);
         dest.writeString(insertedNumbers);
+        dest.writeString(lastOperation);
+        dest.writeDouble(interim);
     }
 
     @Override

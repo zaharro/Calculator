@@ -20,4 +20,7 @@
     <string name="_plus">+</string>
     <string name="_equals">=</string>
     <string name="number_default">0</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+    <string name="action_settings">Автор - Захарьин Николай</string>
 </resources>

@@ -1,14 +1,8 @@
 package com.example.calculator;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 
 import androidx.activity.EdgeToEdge;
@@ -22,7 +16,6 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.calculator.databinding.ActivityMainBinding;
-import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -160,15 +153,16 @@ public class MainActivity extends AppCompatActivity {
                 onOperationClick("=");
             }
         });
-
         binding.buttonClearAll.setOnClickListener(new View.OnClickListener() {
+
             public void onClick(View v) {
-                onOperationClick("clearAll");
+                clearInsertedNumbers();
             }
         });
 
         binding.buttonClearLast.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                showDialogFragment();
                 onOperationClick("clearLast");
             }
         });
@@ -176,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
         binding.buttonPerc.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 onOperationClick("percentage");
+                showDialogFragment();
             }
         });
     }
@@ -208,8 +203,9 @@ public class MainActivity extends AppCompatActivity {
     } */
 
     public void clearInsertedNumbers() {
-        insertedNumbers = "";
+        insertedNumbers = "0";
         interim = null;
+        binding.numberField.setText(insertedNumbers);
     }
 
     // Сохранение данных
@@ -227,17 +223,14 @@ public class MainActivity extends AppCompatActivity {
         insertedNumbers = parameters.insertedNumbers;
         lastOperation = parameters.lastOperation;
         interim = parameters.interim;
-        /*numberField.setText(interim.toString().replace('.', ','));*/
 
     }
 
     // обработка нажатия на числовую кнопку
     public void onNumberClick(String number) {
-
         insertedNumbers = insertedNumbers + number;
         parameters.insertedNumbers = insertedNumbers;
         binding.numberField.setText(insertedNumbers);
-
     }
 
     // обработка нажатия на кнопку операции
@@ -266,10 +259,6 @@ public class MainActivity extends AppCompatActivity {
             }
             binding.numberField.setText(interim.toString());
             switch (operation) {
-                case "clearAll":
-                    clearInsertedNumbers();
-
-                    break;
 
                 case "=":
                     interim = number;
@@ -290,8 +279,11 @@ public class MainActivity extends AppCompatActivity {
                 case "-":
                     interim -= number;
                     break;
-            }
 
+                case "percentage":
+                    showDialogFragment();
+                    break;
+            }
         }
 
         binding.numberField.setText(interim.toString().replace('.', ','));
@@ -321,7 +313,13 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
 
     }
+
+    private void showDialogFragment() {
+        new MyDialogFragment().show(getSupportFragmentManager(), MyDialogFragment.TAG);
+    }
+
 }
+
 
 /*
 https://www.geeksforgeeks.org/data-binding-in-android-activities-views-and-fragments/*/
